@@ -12,4 +12,23 @@ services:
       - "./app:/app"
     command: >
       - sh -c "python manage.py runserver 0.0.0.0:8000"
-      
+    environment:
+      - DB_HOST=db
+      - DB_NAME=hillside-db
+      - DB_USER=hillside-db
+      - DB_PASS=hillside-db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgre-db
+      - POSTGRES_USER=hillside-db
+      - POSTGRES_PASSWORD=hillside-db
+
+
+volumes:
+  dev-db-data:
