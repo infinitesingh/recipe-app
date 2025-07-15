@@ -78,10 +78,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME"),
-        'HOST': os.environ.get('DB_HOST'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
+        'NAME': os.environ.get("DB_NAME", "hillside_db"),
+        'HOST': os.environ.get('DB_HOST', "localhost"),
+        'USER': os.environ.get('DB_USER',"hillside"),
+        'PASSWORD': os.environ.get('DB_PASS','hillside-Password'),
+        'PORT': os.environ.get('PORT', '5432')
     }
 }
 
@@ -128,3 +129,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL = 'core.User'
